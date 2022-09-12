@@ -62,8 +62,8 @@ const Navbar = () => {
           </div>
         </div>
         <div className="text-sm font-thin">
-          <div className="mb-1">Help</div>
-          <div>Contact Us</div>
+          <div className="mb-1 cursor-pointer">Help</div>
+          <div className="cursor-pointer">Contact Us</div>
         </div>
       </div>
     </div>
