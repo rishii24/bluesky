@@ -9,6 +9,8 @@ import {
 import SignIn from "./auth/SignIn";
 import SignUp from "./auth/SignUp";
 
+import PrivateRoutes from "./routing/PrivateRoutes";
+
 import Dashboard from "./features/Dashboard";
 import Transactions from "./features/Transactions";
 import Users from "./features/Users";
@@ -25,13 +27,13 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
 
           {/* Internal navigation routes */}
-
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/transactions" element={<Transactions />} />
-          <Route path="/schedules" element={<Schedules />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/settings" element={<Settings />} />
-
+          <Route element={<PrivateRoutes />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/transactions" element={<Transactions />} />
+            <Route path="/schedules" element={<Schedules />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/settings" element={<Settings />} />
+          </Route>
           {/** */}
         </Routes>
       </Router>
