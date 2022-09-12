@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../components/Navbar";
 
 const Users = () => {
   return (
-    <div>Users</div>
-  )
-}
+    <div className="flex">
+      <Navbar />
+      <div>Users</div>
+    </div>
+  );
+};
 
-export default Users
+export default Users;

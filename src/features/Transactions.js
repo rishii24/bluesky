@@ -1,8 +1,13 @@
 import React from 'react'
+import Navbar from "../components/Navbar";
+
 
 const Transactions = () => {
   return (
-    <div>Transactions</div>
+    <div className="flex">
+      <Navbar />
+      <div>Transactions</div>
+    </div>
   )
 }
 

@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../components/Navbar";
 
 const Schedules = () => {
   return (
-    <div>Schedules</div>
-  )
-}
+    <div className="flex">
+      <Navbar />
+      <div>Schedules</div>
+    </div>
+  );
+};
 
-export default Schedules
+export default Schedules;

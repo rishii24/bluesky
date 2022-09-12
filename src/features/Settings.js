@@ -1,8 +1,13 @@
 import React from 'react'
+import Navbar from "../components/Navbar";
+
 
 const Settings = () => {
   return (
-    <div>Settings</div>
+    <div className="flex">
+      <Navbar />
+      <div>Settings</div>
+    </div>
   )
 }
 
