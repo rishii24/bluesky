@@ -17,7 +17,7 @@ const UserInfo = ({ userimg, firstName, lastName, email, index }) => {
         {index % 2 ? "Male" : "Female"}
       </div>
       <div className="flex justify-start w-16">
-        {index == 0 ? "Admin " : "User"}
+        {index === 0 ? "Admin " : "User"}
       </div>
     </div>
   );
