@@ -17,7 +17,7 @@ const Settings = () => {
   const [accountInfo, setaccountInfo] = useState({
     email: "",
     pass: "",
-    confirmPass: "",
+    newPass: "",
   });
   const [togglePass, settogglePass] = useState(false);
   const [toggle2fa, settoggle2fa] = useState(false);
@@ -50,7 +50,7 @@ const Settings = () => {
     setaccountInfo({
       email: "",
       pass: "",
-      confirmPass: "",
+      newPass: "",
     });
   };
 
@@ -65,7 +65,7 @@ const Settings = () => {
         <Header title="Settings" />
         <div className="flex mt-4">
           <div className="flex flex-col bg-white rounded-xl w-1/2 px-8 py-4 mr-10 h-max">
-            <div className="text-lg font-semibold">Profile</div>
+            <div className="font-semibold">Profile</div>
             <div className="flex justify-between mt-4">
               <div className="flex flex-col">
                 <UserImage className="h-20 w-20 rounded-full" />
@@ -191,7 +191,7 @@ const Settings = () => {
                 </div>
                 <div className="flex flex-col mt-2">
                   <label htmlFor="pass" className="font-serif text-sm">
-                    Password
+                    Current Password
                   </label>
                   <div className="flex items-center px-4 py-1 rounded-md mt-1 font-serif bg-gray-100">
                     <input
@@ -214,16 +214,16 @@ const Settings = () => {
                   </div>
                 </div>
                 <div className="flex flex-col mt-2">
-                  <label htmlFor="confirmPass" className="font-serif text-sm">
-                    Confirm Password
+                  <label htmlFor="newPass" className="font-serif text-sm">
+                    New Password
                   </label>
                   <div className="flex items-center px-4 py-1 rounded-md mt-1 font-serif bg-gray-100">
                     <input
                       type={togglePass ? "text" : "password"}
-                      id="confirmPass"
+                      id="newPass"
                       minLength={8}
-                      value={accountInfo.confirmPass}
-                      name="confirmPass"
+                      value={accountInfo.newPass}
+                      name="newPass"
                       required
                       className="outline-none border-none bg-gray-100 w-11/12"
                       onChange={accountChangeHandler}
