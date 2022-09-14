@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
-
 import { ReactComponent as Google } from "../assets/google-icon.svg";
 import { ReactComponent as Apple } from "../assets/apple-icon.svg";
+import GoogleLogin from "react-google-login";
+import { gapi } from "gapi-script";
 
 const SignIn = () => {
+  gapi.load("client:auth2", () => {
+    gapi.client.init({
+      clientId: process.env.REACT_APP_CLIENT_ID,
+      scope: "profile email",
+      plugin_name: "dash",
+    });
+  });
+
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -19,7 +28,6 @@ const SignIn = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(userInfo);
     if (userInfo.email.length > 5 && userInfo.pass.length > 7) {
       let temptoken = (Math.random() * 1e128).toString(36);
       localStorage.setItem("random token", temptoken);
@@ -27,7 +35,18 @@ const SignIn = () => {
     }
     setUserInfo({ email: "", pass: "" });
   };
-
+  const loginGoogle = (response) => {
+    if (response) {
+      localStorage.setItem("random token", response?.tokenObj?.access_token);
+      localStorage.setItem("userfname", response?.profileObj?.givenName);
+      localStorage.setItem("userlname", response?.profileObj?.familyName);
+      localStorage.setItem("userimg", response?.profileObj?.imageUrl);
+      navigate("/dashboard");
+    }
+  };
+  const googleLoginError = (error) => {
+    console.log("google login error", error);
+  };
   return (
     <div className="flex">
       <Sidebar />
@@ -37,10 +56,28 @@ const SignIn = () => {
           <div className="font-semibold mt-2">Sign in to your account</div>
         </div>
         <div className="flex items-center md:justify-between justify-start px-6 my-6">
-          <div className="flex items-center px-5 py-1.5 rounded-xl bg-white text-sm text-gray-500 cursor-pointer">
+          {/* <div className="flex items-center px-5 py-1.5 rounded-xl bg-white text-sm text-gray-500 cursor-pointer">
             <Google className="mr-2" />
             Sign in with Google
-          </div>
+          </div> */}
+          <GoogleLogin
+            clientId={process.env.REACT_APP_CLIENT_ID}
+            render={(renderProps) => (
+              <button
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                className="flex items-center px-5 py-1.5 rounded-xl bg-white text-sm text-gray-500 outline-none"
+              >
+                <Google className="mr-2" />
+                Sign in with Google{" "}
+              </button>
+            )}
+            buttonText="Login"
+            onSuccess={loginGoogle}
+            onFailure={googleLoginError}
+            isSignedIn={true}
+            cookiePolicy={"single_host_origin"}
+          />
           <div className="flex items-center px-5 py-1.5 rounded-xl bg-white text-sm text-gray-500 cursor-pointer">
             <Apple className="mr-2" />
             Sign in with Apple
