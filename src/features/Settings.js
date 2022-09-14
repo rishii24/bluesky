@@ -58,6 +58,8 @@ const Settings = () => {
     localStorage.clear();
     window.location.reload();
   };
+
+  const imgurl = localStorage.getItem("userimg");
   return (
     <div className="flex bg-background">
       <Navbar />
@@ -68,7 +70,15 @@ const Settings = () => {
             <div className="font-semibold">Profile</div>
             <div className="flex justify-between mt-4">
               <div className="flex flex-col">
-                <UserImage className="h-20 w-20 rounded-full" />
+                {!imgurl ? (
+                  <UserImage className="h-20 w-20 rounded-full" />
+                ) : (
+                  <img
+                    className="h-20 w-20 rounded-full"
+                    src={imgurl}
+                    alt="user"
+                  />
+                )}
                 <button className="flex justify-center border border-1 mt-2  text-xs py-1 px-2 rounded-lg">
                   Change
                 </button>
