@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { ReactComponent as Google } from "../assets/google-icon.svg";
@@ -19,6 +19,12 @@ const SignIn = () => {
     email: "",
     pass: "",
   });
+
+  useEffect(() => {
+    window.alert(
+      "Any ID and Password can be used for normal login as long as it supports the format"
+    );
+  }, []);
 
   const changeHandler = (e) => {
     let { name, value } = e.target;
@@ -44,7 +50,7 @@ const SignIn = () => {
     }
   };
   const googleLoginError = (error) => {
-    console.log("google login error", error);
+    window.alert("Google says :" + error);
   };
   return (
     <div className="flex">
