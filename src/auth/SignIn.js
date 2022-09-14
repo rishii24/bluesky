@@ -14,7 +14,6 @@ const SignIn = () => {
       plugin_name: "dash",
     });
   });
-
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -56,10 +55,6 @@ const SignIn = () => {
           <div className="font-semibold mt-2">Sign in to your account</div>
         </div>
         <div className="flex items-center md:justify-between justify-start px-6 my-6">
-          {/* <div className="flex items-center px-5 py-1.5 rounded-xl bg-white text-sm text-gray-500 cursor-pointer">
-            <Google className="mr-2" />
-            Sign in with Google
-          </div> */}
           <GoogleLogin
             clientId={process.env.REACT_APP_CLIENT_ID}
             render={(renderProps) => (
