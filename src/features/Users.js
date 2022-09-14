@@ -25,6 +25,10 @@ const Users = () => {
     fetchData();
   }, [page]);
 
+  ////
+  // To search any user by first name
+  ////
+
   const searchHandler = (e) => {
     e.preventDefault();
     settoggle(true);
@@ -36,11 +40,27 @@ const Users = () => {
     }
   };
 
-  // console.log(userlist);
+  ////
 
   const changeHandler = (e) => {
     setSearch(e.target.value);
   };
+
+  ////
+  // Filter function to filter userlist in ascending order vv
+  ////
+
+  const handleFilterClick = () => {
+    setuserlist(
+      userlist
+        .sort((x, y) => {
+          if (x.first_name > y.first_name) return -1;
+        })
+        .reverse()
+    );
+  };
+
+  ////
 
   return (
     <div className="flex bg-background">
@@ -74,7 +94,10 @@ const Users = () => {
                     </button>
                   )}
                 </form>
-                <button className="flex items-center border border-1 text-xs py-1 px-2 rounded-lg">
+                <button
+                  onClick={() => handleFilterClick()}
+                  className="flex items-center border border-1 text-xs py-1 px-2 rounded-lg"
+                >
                   <Filter className="mr-2" /> Filter
                 </button>
                 <button className="border-none outline-none bg-primary py-1 px-2 rounded-lg text-white text-xs font-semibold">
